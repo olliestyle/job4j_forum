@@ -1,17 +1,28 @@
 package ru.job4j.forum.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
+
+    private String username;
     private String email;
     private String password;
+    private boolean enabled;
 
-    public static User of(String name, String email, String password) {
+    @ManyToOne
+    @JoinColumn(name = "authority_id")
+    private Authority authority;
+
+    public static User of(String username, String email, String password) {
         User user = new User();
-        user.name = name;
+        user.username = username;
         user.email = email;
         user.password = password;
         return user;
@@ -25,12 +36,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -49,6 +60,22 @@ public class User {
         this.password = password;
     }
 
+    public Authority getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -59,12 +86,12 @@ public class User {
         }
         User user = (User) o;
         return id == user.id
-                && Objects.equals(name, user.name)
+                && Objects.equals(username, user.username)
                 && Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email);
+        return Objects.hash(id, username, email);
     }
 }

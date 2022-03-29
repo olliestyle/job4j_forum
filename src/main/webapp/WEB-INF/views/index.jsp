@@ -15,7 +15,7 @@
 </head>
 <body>
 <div>
-    Login as : ${user.name}
+    Login as : ${user.username}
 </div>
 <div class="container mt-3">
     <div class="row">

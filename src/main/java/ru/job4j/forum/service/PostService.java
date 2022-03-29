@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.repository.PostRepository;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 

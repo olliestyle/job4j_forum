@@ -23,8 +23,8 @@
     <form name='login' action="<c:url value='/login'/>" method='POST'>
         <table>
             <tr>
-                <td>Email:</td>
-                <td><input type='text' name='email'></td>
+                <td>Username:</td>
+                <td><input type='text' name='username'></td>
             </tr>
             <tr>
                 <td>Password:</td>
