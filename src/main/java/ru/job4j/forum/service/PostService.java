@@ -2,6 +2,7 @@ package ru.job4j.forum.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Post;
+import ru.job4j.forum.repository.PostRepository;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,24 +11,23 @@ import java.util.List;
 @Service
 public class PostService {
 
-    private final List<Post> posts = new ArrayList<>();
+    private final PostRepository postRepository;
 
-    public PostService() {
-        posts.add(Post.of(posts.size(), "Продаю машину ладу 01.", "Когда-нибудь"));
+    public PostService(PostRepository postRepository) {
+        this.postRepository = postRepository;
     }
 
     public List<Post> getAll() {
-        return posts;
+        return (List) postRepository.findAll();
     }
 
     public void create(Post post) {
-        post.setId(posts.size());
         post.setCreated(Calendar.getInstance());
-        posts.add(post);
+        postRepository.save(post);
     }
 
     public void edit(Post post) {
         post.setCreated(Calendar.getInstance());
-        posts.set(post.getId(), post);
+        postRepository.save(post);
     }
 }
