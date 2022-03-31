@@ -24,6 +24,7 @@ public class RegController {
     public String regSave(Model model, @ModelAttribute User user) {
         String toReturn;
         if (!registrationService.existsUserByUsername(user.getUsername())) {
+            user.setEnabled(true);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setAuthority(registrationService.findUserByAuthority("ROLE_USER"));
             registrationService.saveUser(user);
