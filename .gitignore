@@ -72,3 +72,7 @@ jrebel.lic
 build
 .gradle
 *.pid
+
+# db
+forum.mv.db
+forum.trace.db

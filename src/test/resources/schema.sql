@@ -19,9 +19,9 @@ CREATE TABLE if not exists users (
     authority_id int not null references authorities(id)
 );
 
-insert into authorities (authority) values ('ROLE_USER');
-insert into authorities (authority) values ('ROLE_ADMIN');
+insert into authorities (authority) values ('ROLE_USER') on conflict do nothing ;
+insert into authorities (authority) values ('ROLE_ADMIN') on conflict do nothing ;
 
-insert into users (username, email, password, authority_id) VALUES
-('admin', 'admin@mail.ru', '$2a$10$lUDAW/3P5JWDXA3O6Lb85OYX7EDGEAfNsjBYq7NfM82X1ot.KKu66',
+insert into users (username, email, password, enabled, authority_id) VALUES
+('admin', 'admin@mail.ru', '$2a$10$lUDAW/3P5JWDXA3O6Lb85OYX7EDGEAfNsjBYq7NfM82X1ot.KKu66', true,
  (select id from authorities where authority = 'ROLE_ADMIN'));
