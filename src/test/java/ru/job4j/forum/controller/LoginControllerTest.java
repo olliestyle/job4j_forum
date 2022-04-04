@@ -22,15 +22,6 @@ public class LoginControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    @Sql("/schema.sql")
-    public void whenCorrectLogin() throws Exception {
-        this.mockMvc.perform(formLogin().user("admin").password("admin"))
-                .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/"));
-    }
-
-    @Test
     public void whenIncorrectLogin() throws Exception {
         this.mockMvc.perform(formLogin().user("hello").password("hello"))
                 .andDo(print())
